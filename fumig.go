@@ -18,7 +18,7 @@ type hEntry struct {
 
 var textCache = make(map[string][]string)
 var menuCache = map[string][]*gopherline{"gopher://__start__:0/1": helpPage}
-var history = []*hEntry{&hEntry{helpPage[0], 0}}
+var history = []*hEntry{}
 var status string
 var hasError bool
 
