@@ -85,7 +85,7 @@ func (l *gopherline) FromUri(uri string) error {
 
 func (l *gopherline) Parse(line string) error {
 	split := strings.Split(line, "\t")
-	if len(split) != 4 || split[textIndex] == "" {
+	if len(split) < 4 || split[textIndex] == "" {
 		return ParseError
 	}
 	l.Ftype = rune(split[textIndex][0])
