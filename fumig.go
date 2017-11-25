@@ -463,7 +463,13 @@ func main() {
 			tb.Sync()
 		case keyOpen:
 			var fname string
+			if !isMenu(current.selector.Ftype) {
+				break
+			}
 			sel := menu[current.offset]
+			if strings.ContainsRune("i17", sel) {
+				break
+			}
 			if sel.Ftype == 'h' && strings.HasPrefix(sel.Path, "URL:") {
 				fname = sel.Path[len("URL:"):]
 			} else {
@@ -477,7 +483,7 @@ func main() {
 				}
 				break
 			}
-			status = "Downloading..."
+			status = "Loading..."
 			draw(menu, text)
 
 			fpath := path.Join(tmpdir, fname)
