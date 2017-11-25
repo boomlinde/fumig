@@ -467,7 +467,7 @@ func main() {
 				break
 			}
 			sel := menu[current.offset]
-			if strings.ContainsRune("i17", sel) {
+			if strings.ContainsRune("i17", sel.Ftype) {
 				break
 			}
 			if sel.Ftype == 'h' && strings.HasPrefix(sel.Path, "URL:") {
