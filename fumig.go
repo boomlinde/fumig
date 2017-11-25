@@ -181,10 +181,10 @@ func draw(menu []*gopherline, text []string) {
 	title = current.selector.Text
 	drawStr(0, height, title, tb.ColorYellow|tb.AttrBold, tb.ColorDefault)
 	if hasError {
-		drawStr(width/2-len(status)/2, height, status, tb.ColorRed|tb.AttrBold, tb.ColorDefault)
+		drawStr(width-len(status), height, status, tb.ColorRed|tb.AttrBold, tb.ColorDefault)
 		hasError = false
 	} else {
-		drawStr(width/2-len(status)/2, height, status, tb.ColorCyan|tb.AttrBold, tb.ColorDefault)
+		drawStr(width-len(status), height, status, tb.ColorCyan|tb.AttrBold, tb.ColorDefault)
 	}
 	var offset int
 	switch current.selector.Ftype {
