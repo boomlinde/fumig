@@ -18,6 +18,7 @@ const (
 	keyRedraw
 	keyOpen
 	keyUrl
+	keyDownload
 )
 
 var chmap = map[rune]int{
@@ -37,6 +38,7 @@ var chmap = map[rune]int{
 	'G': keyBottom,
 	'v': keyOpen,
 	'o': keyUrl,
+	'D': keyDownload,
 }
 
 var kmap = map[tb.Key]int{

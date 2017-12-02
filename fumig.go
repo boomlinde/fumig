@@ -374,14 +374,16 @@ func main() {
 			updateOffset(menu, text, -height/2)
 		case keyPgdn:
 			updateOffset(menu, text, height/2)
+		case keyDownload:
+			fallthrough
 		case keyUrl:
 			fallthrough
 		case keyEnter:
 			e := &gopherline{}
-			if ke == keyEnter && !isMenu(current.selector.Ftype) {
+			if ke != keyUrl && !isMenu(current.selector.Ftype) {
 				break
 			}
-			if ke != keyEnter {
+			if ke == keyUrl {
 				if url, ok := editbox("Address: ", ""); ok {
 					if err := e.FromUri(url); err != nil {
 						hasError = true
@@ -395,7 +397,12 @@ func main() {
 				e = menu[current.offset]
 			}
 
-			switch e.Ftype {
+			ftype := e.Ftype
+			if ke == keyDownload && ftype != 'i' {
+				ftype = ' '
+			}
+
+			switch ftype {
 			case 'i':
 				// do nothing
 			case '7':
