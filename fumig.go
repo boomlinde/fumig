@@ -6,6 +6,7 @@ import (
 	tb "github.com/nsf/termbox-go"
 	"github.com/skratchdot/open-golang/open"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"path"
 	"strings"
@@ -424,7 +425,11 @@ func main() {
 				if e.Ftype == 'h' && strings.HasPrefix(e.Path, "URL:") {
 					break
 				}
-				fname := path.Base(strings.Replace(e.Path, "\\", "/", -1))
+				gpath, err := url.PathUnescape(e.Path)
+				if err != nil {
+					gpath = ""
+				}
+				fname := path.Base(strings.Replace(gpath, "\\", "/", -1))
 				if fname == "/" || fname == "" {
 					fname = "unknown.bin"
 				}
