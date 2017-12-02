@@ -377,22 +377,22 @@ func main() {
 		case keyUrl:
 			fallthrough
 		case keyEnter:
-			if !isMenu(current.selector.Ftype) {
+			e := &gopherline{}
+			if ke == keyEnter && !isMenu(current.selector.Ftype) {
 				break
 			}
-			e := menu[current.offset]
 			if ke != keyEnter {
 				if url, ok := editbox("Address: ", ""); ok {
-					sel := &gopherline{}
-					if err := sel.FromUri(url); err != nil {
+					if err := e.FromUri(url); err != nil {
 						hasError = true
 						status = err.Error()
 						break
 					}
-					e = sel
 				} else {
 					break
 				}
+			} else {
+				e = menu[current.offset]
 			}
 
 			switch e.Ftype {
